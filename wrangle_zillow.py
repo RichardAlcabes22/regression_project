@@ -18,11 +18,19 @@ warnings.filterwarnings('ignore')
 #**************************************************Acquire*******************************************************
 
 def acquire_zillow():
+     ''' 
+     Acquire data from Zillow using env imports, rename columns, and storing a cached version of SQL pull as a .csv.
+     Specifically, the SQL query returns SINGLE-FAMILY property results which were the subject of a transaction in 2017.
+     
+     
+     
+     '''
+    
     if os.path.exists('zillow_pred_2017.csv'):
         print('local version found!')
         return pd.read_csv('zillow_pred_2017.csv', index_col=0)
     else:
-        ''' Acquire data from Zillow using env imports and rename columns'''
+       
 
         url = f"mysql+pymysql://{user}:{pwd}@{host}/zillow"
 
@@ -58,8 +66,12 @@ def acquire_zillow():
 #**************************************************Remove Outliers*******************************************************
 
 def remove_outliers(df, k, col_list):
-    ''' remove outliers from a list of columns in a dataframe 
-        and return that dataframe
+    ''' Remove outliers from a list of columns in a dataframe 
+        and return that dataframe.  This function takes in a dataframe, a multiplier applied to IQR used to define
+        an outlier (recommend 1.5), and finally a list of columns subjected to the function.
+        
+        Outputs a dataframe with any rows containing outliers in any of the specified columns REMOVED from the
+        input dataframe.
     '''
     
     for col in col_list:
@@ -145,7 +157,14 @@ def get_box(df):
 #**************************************************Prepare*******************************************************
 
 def prepare_zillow(df):
-    ''' Prepare zillow data for exploration'''
+    ''' 
+      Takes in a Zillow df      - removes outliers
+                                - displays histograms and boxplots for cont and discrete data
+                                - converts specific columns dtypes
+                                - drops NULLS
+                                - Creates train/val/test split
+                                - Imputes missing Year_Built based upon training into val and test
+    '''
 
     # removing outliers
     df = remove_outliers(df, 1.5, ['taxable_value','sqft','lotsqft'])
