@@ -18,13 +18,14 @@ warnings.filterwarnings('ignore')
 #**************************************************Acquire*******************************************************
 
 def acquire_zillow():
-     ''' 
+    ''' 
      Acquire data from Zillow using env imports, rename columns, and storing a cached version of SQL pull as a .csv.
      Specifically, the SQL query returns SINGLE-FAMILY property results which were the subject of a transaction in 2017.
-     
-     
-     
-     '''
+     '''    
+    
+    
+    
+    
     
     if os.path.exists('zillow_pred_2017.csv'):
         print('local version found!')

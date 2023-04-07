@@ -25,29 +25,31 @@
 - Do properties in Los Angeles County have a statistically significant different mean than the overall population?
 - Do properties in Orange County have a statistically significant different mean than the overall population?
 
-#### HYPOTHESIS: Customers in this segmnent churn at greater rates than the overall Telco customer base
 
 #### Data Dictionary: note outliers default defined as 1.5 * IQR, except as specified 
 
-beds:           |integer    |   number of bedrooms (outliers defined as < 1 and > 5) 
 
-baths:          |float      |   number of bathrooms (outliers defined as < 1 and > 4)           
+beds:           | integer    |   number of bedrooms (outliers defined as < 1 and > 5) 
 
-sqft:           |float      |   livable square footage as calculated by county assessors office 
+baths:          | float      |   number of bathrooms (outliers defined as < 1 and > 4)           
 
-taxable_value:  |float      |   TARGET: Assessed Taxable Value as calculated by county assessors office
+sqft:           | float      |   livable square footage as calculated by county assessors office 
 
-built:          |float      |   Year of property construction
+taxable_value:  | float      |   TARGET: Assessed Taxable Value as calculated by county assessors office
 
-lotsqft:        |float      |   square footage of land subject to tax calculations 
+built:          | float      |   Year of property construction
 
-fips:           |object     |   Federal county code: 6037 LA County, 6059 Orange County, 6111 Ventura County (California)
+lotsqft:        | float      |   square footage of land subject to tax calculations 
 
-city:           |object     |   Propietary Code used to denote City, mapping is currently unavailable
+fips:           | object     |   Federal county code: 6037 LA County, 6059 Orange County, 6111 Ventura County (California)
 
-o_sqft:         |float      |   an attempt to combine SQFT-BEDS-BATHS into one data point to reduce effects of colinearity
+city:           | object     |   Propietary Code used to denote City, mapping is currently unavailable
 
-                                o_sqft = SQFT / (BEDS + BATHS)  purpose is to compare the amount of square footage attributable to common areas such as kitchen, living room, dining room, etc., while controlling for the effects of number of BED/BATH contribution to SQFT.
+o_sqft:         | float      |   an attempt to combine SQFT-BEDS-BATHS into one data point to reduce effects of colinearity
+
+o_sqft = SQFT / (BEDS + BATHS)  
+purpose is to compare the amount of square footage attributable to common areas such 
+as kitchen, living room, dining room, etc., while controlling for the effects of number of BED/BATH contribution to SQFT.
 
 
 #### Instructions for those who wish to reproduce this work or simply follow along:
