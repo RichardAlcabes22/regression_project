@@ -98,7 +98,7 @@ def get_hist(df):
     plt.figure(figsize=(16, 3))
 
     # List of columns
-    cols = [col for col in df.columns if col not in ['fips','city','baths','beds']]
+    cols = [col for col in df.columns if col not in ['fips','city','beds','baths']]
 
     for i, col in enumerate(cols):
 
@@ -112,7 +112,7 @@ def get_hist(df):
         plt.title(col)
 
         # Display histogram for column.
-        df[col].hist(bins=5)
+        df[col].hist(bins=50)
 
         # Hide gridlines.
         plt.grid(False)
@@ -129,7 +129,7 @@ def get_box(df):
     ''' Gets boxplots of acquired continuous variables'''
     
     # List of columns
-    cols = ['sqft', 'lotsqft', 'taxable_value', 'built']
+    cols = ['sqft', 'taxable_value','built','lotsqft']
 
     plt.figure(figsize=(16, 3))
 
@@ -145,7 +145,7 @@ def get_box(df):
         plt.title(col)
 
         # Display boxplot for column.
-        sns.boxplot(data=df[[col]])
+        sns.boxplot(data=df[[col]],x=col)
 
         # Hide gridlines.
         plt.grid(False)
