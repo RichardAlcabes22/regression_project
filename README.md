@@ -24,6 +24,8 @@
 #### What meaningful subsets of the dataset can be leveraged to create a model that displays a significant improvement in performance when compared to MODEL Z?
 - Do properties in Los Angeles County have a statistically significant different mean than the overall population?
 - Do properties in Orange County have a statistically significant different mean than the overall population?
+- Does a Statistically significant correlation exist between SQFT feature and Baths feature?
+- Does a Statistically significant correlation exist between SQFT feature and Taxable_Value feature?
 
 
 #### Data Dictionary: note outliers default defined as 1.5 * IQR, except as specified 
@@ -81,8 +83,8 @@ Any further assistance required, please email me at myemail@somecompany.com.
 
 - Property taxes are assessed at county level of granularity.  Our models need to begin at that level.  Let us reduce the noise factor in the dataset by subsetting by county.
 - With that being said, let us now choose the county with the greatest number of datapoints, but also the least homogeneous-LA County in order to find an algorithm that performs best in this noisy environment.
-- Baseline stats derived from y-target MEAN: 
-- Linear Model #1 using SQFT/BEDS/BATHS stats: slight improvement from baseline
+- Baseline stats derived from y-target MEAN: RMSE=243k r2=0
+- Linear Model #1 using SQFT/BEDS/BATHS stats: slight improvement from baseline r2=0.142
 - DecisionTreeRegressor and RandomForestRegressor displayed improvement over LM.
 - Random Forest with 55 trees and max_depth of 10 (CodeName; JUNIOR) achieved 0.242 r-squared on validation set
 - Applied Random Forest 55/10 (JUNIOR) to VENTURA County subset (less noise and more homogenous), 0.420 r-squared on validation set, but appears to suffer from significant OVERFITTING (0.618 on train)
